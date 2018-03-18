@@ -85,5 +85,26 @@ get_download_url() {
   fi
 }
 
+install_default_elixir_packages() {
+  local default_elixir_packages="${HOME}/.default-elixir-packages"
+
+  if [ ! -f $default_elixir_packages ]; then return; fi
+
+  for name in $(cat $default_elixir_packages); do
+    echo -ne "\nInstalling \e[33m${name}\e[39m package... "
+
+    if [ "$name" = "hex" ]; then
+      mix local.hex
+      continue
+    fi
+
+    if mix archive.install $name > /dev/null 2>&1; then
+      echo -e "\e[32mSUCCESS\e[39m"
+    else
+      echo -e "\e[31mFAIL\e[39m"
+    fi
+  done
+}
 
 install_elixir $ASDF_INSTALL_TYPE $ASDF_INSTALL_VERSION $ASDF_INSTALL_PATH
+install_default_elixir_packages

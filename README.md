@@ -33,6 +33,17 @@ This plugin supports elixir escripts adding them to your path just like any othe
 Whenever you install a new escript with `mix escript.install` you need to `asdf reshim elixir` in order
 to create shims for it.
 
+## Default Elixir packages
+
+asdf-elixir can automatically install a set of default hex packages right after installing an elixir version. To enable this feature, provide a `$HOME/.default-elixir-packages` file that lists one package per line, for example:
+
+```
+hex
+https://github.com/phoenixframework/archives/raw/master/phx_new.ez
+github user/repo
+```
+
+This will install hex using `mix local.hex`, add the phoenix generator or install a mix package from github. For full set of options, try `mix help archive.install`.
 
 ## Use
 
