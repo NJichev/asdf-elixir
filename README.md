@@ -39,11 +39,12 @@ asdf-elixir can automatically install a set of default hex packages right after 
 
 ```
 hex
+rebar
 https://github.com/phoenixframework/archives/raw/master/phx_new.ez
 github user/repo
 ```
 
-This will install hex using `mix local.hex`, add the phoenix generator or install a mix package from github. For full set of options, try `mix help archive.install`.
+This will install hex and rebar using `mix local.{hex, rebar} --force`, add the phoenix generator or install a mix package from github. For full set of options, try `mix help archive.install`.
 
 ## Use
 

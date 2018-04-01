@@ -91,10 +91,15 @@ install_default_elixir_packages() {
   if [ ! -f $default_elixir_packages ]; then return; fi
 
   for name in $(cat $default_elixir_packages); do
-    echo -ne "\nInstalling \e[33m${name}\e[39m package... "
+    echo -ne "\nInstalling \e[33m${name}\e[39m ... "
 
     if [ "$name" = "hex" ]; then
-      mix local.hex
+      mix local.hex --force
+      continue
+    fi
+
+    if [ "$name" = "rebar" ]; then
+      mix local.rebar --force
       continue
     fi
 
