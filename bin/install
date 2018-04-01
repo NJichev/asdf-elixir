@@ -90,6 +90,9 @@ install_default_elixir_packages() {
 
   if [ ! -f $default_elixir_packages ]; then return; fi
 
+  local current_version=$(asdf current elixir | cut -d\( -f1)
+
+  asdf local $ASDF_INSTALL_TYPE $ASDF_INSTALL_VERSION
   for name in $(cat $default_elixir_packages); do
     echo -ne "\nInstalling \e[33m${name}\e[39m ... "
 
@@ -109,6 +112,8 @@ install_default_elixir_packages() {
       echo -e "\e[31mFAIL\e[39m"
     fi
   done
+
+  asdf local $ASDF_INSTALL_TYPE $current_version
 }
 
 install_elixir $ASDF_INSTALL_TYPE $ASDF_INSTALL_VERSION $ASDF_INSTALL_PATH
